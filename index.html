@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+      .loginArea {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .loginForm {
+        background-color: rgb(52, 92, 214);
+        color: white;
+        height: 300px;
+        width: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loginArea">
+      <div class="loginForm">
+        <input type="text" id="userName" />
+        <button id="login" onclick="loginClicked()">Login</button>
+      </div>
+    </div>
+    <div class="playArea" style="display: none">
+      <div class="screen"></div>
+      <p id="userData">
+        <button value="1" onclick="makeMove(event)">Rock</button>
+        <button value="2" onclick="makeMove(event)">Paper</button>
+        <button value="3" onclick="makeMove(event)">Scissors</button>
+        <button id="play" onclick="play()">Play</button>
+      </p>
+    </div>
+
+    <script>
+      const userDetails = {
+        userName: "",
+        userScore: 0,
+        tiedScore: 0,
+        botScore: 0,
+      };
+
+      const moves = {
+        userMove: 0,
+        botMove: 0,
+      };
+
+      function makeMove(e) {
+        let userMove = e.target.value;
+        moves.userMove = parseInt(userMove);
+        let botMove = Math.ceil(Math.random() * 3);
+        moves.botMove = botMove;
+
+        console.log(moves);
+      }
+
+      function play() {
+        console.log(typeof moves.botMove, typeof moves.userMove);
+        if (moves.botMove === moves.userMove) {
+          userDetails.tiedScore += 1;
+          return;
+        }
+
+        if (
+          (moves.botMove === 1 && moves.userMove === 3) ||
+          (moves.botMove === 2 && moves.userMove === 1) ||
+          (moves.botMove === 3 && moves.userMove === 2)
+        ) {
+          userDetails.botScore += 1;
+        } else {
+          userDetails.userScore += 1;
+        }
+
+        console.log(userDetails);
+      }
+
+      function loginClicked() {
+        let userName = document.querySelector("#userName").value;
+        userDetails.userName = userName;
+        document.querySelector(".loginArea").style.display = "none";
+        document.querySelector(".playArea").style.display = "block";
+      }
+    </script>
+  </body>
+</html>

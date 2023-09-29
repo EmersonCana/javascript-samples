@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      main {
+        position: relative;
+        width: 500px;
+        height: 500px;
+        margin: 0 auto;
+        background-color: green;
+      }
+
+      .box1 {
+        position: absolute;
+        height: 50px;
+        width: 50px;
+        background-color: blue;
+        opacity: 1;
+      }
+
+      .box2 {
+        position: absolute;
+        height: 50px;
+        width: 50px;
+        background-color: yellow;
+        opacity: 0;
+      }
+
+      .box3 {
+        position: absolute;
+        right: 0px;
+        height: 50px;
+        width: 50px;
+        background-color: red;
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="box1">Sample</div>
+      <div class="box2"></div>
+      <!-- <div class="box3"></div> -->
+    </main>
+
+    <script>
+      function move() {
+        let box1 = document.querySelector(".box1");
+        let box2 = document.querySelector(".box2");
+
+        let box1id = null;
+        let box2id = null;
+
+        let position = 0;
+        let opacity = 0;
+        let fadeOpacity = 1;
+        clearInterval(box1id);
+        clearInterval(box2id);
+
+        // Box1 Animation
+        box1id = setInterval(animate1, 5);
+
+        function animate1() {
+          if (position == 450) {
+            clearInterval(box1id);
+          } else {
+            position++;
+            box1.style.left = `${position}px`;
+          }
+        }
+
+        // Box2 Animation
+        setTimeout(() => {
+          box2id = setInterval(animate2, 5);
+        }, 3000);
+
+        function animate2() {
+          if (opacity > 1) {
+            clearInterval(box2id);
+            let fade = setInterval(() => {
+              if (fadeOpacity > 0.01) {
+                fadeOpacity -= 0.01;
+                box1.style.opacity = fadeOpacity;
+              } else {
+                box1.style.opacity = 0;
+              }
+            }, 10);
+            if (box1.style.opacity < 0) {
+              clearInterval(fade);
+            }
+          } else {
+            box2.style.opacity = opacity;
+            opacity += 0.01;
+          }
+        }
+      }
+
+      move();
+    </script>
+  </body>
+</html>

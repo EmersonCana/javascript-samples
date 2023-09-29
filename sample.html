@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        width: 400px;
+        margin: 0 auto;
+      }
+      .form-body {
+        padding: 20px;
+        border: 1px solid black;
+      }
+
+      .form-body input {
+        width: 100%;
+        display: block;
+        margin-block: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <div class="container" id="contacts">
+      <div class="form-body" id="form-body">
+        <input type="number" name="contactNumber" placeholder="09999999999" />
+      </div>
+    </div>
+
+    <button id="addNumber" disabled="true">Add Contact Number</button>
+    <button id="disable">Disable</button> -->
+
+    <ul id="list">
+      <li id="firstChild">item1</li>
+      <li>item2</li>
+      <li>item3</li>
+      <li>item4</li>
+    </ul>
+
+    <script>
+      let list = document.querySelector("#list");
+      console.log("First Child", list.firstChild);
+      console.log("First Element Child", list.firstElementChild);
+      console.log("Child Element Count", list.childElementCount);
+
+      let firstChild = document.querySelector("#firstChild");
+      console.log("Next Element Sibling", firstChild.nextElementSibling);
+      //   let formBody = document.querySelector("#form-body");
+      //   let contact = document.querySelector("#contacts");
+
+      //   let addNumber = document.querySelector("#addNumber");
+      //   let disable = document.querySelector("#disable");
+      //   disable.addEventListener("click", () => {
+      //     if (addNumber.getAttribute("disabled")) {
+      //       disable.innerHTML = "Disable";
+      //       addNumber.removeAttribute("disabled");
+      //     } else {
+      //       disable.innerHTML = "Enable";
+      //       addNumber.setAttribute("disabled", true);
+      //     }
+      //   });
+
+      //   document.querySelector("#addNumber").addEventListener("click", () => {
+      //     let clonedFormBody = formBody.cloneNode(true);
+      //     clonedFormBody.id = `form-body-${contact.children.length}`;
+      //     contact.appendChild(clonedFormBody);
+      //   });
+
+      //   let formBody = document.querySelector("#form-body");
+      //   let p = document.createElement("p");
+      //   p.textContent = "The quick brown fox";
+      //   console.log(formBody.parentNode.appendChild(p));
+    </script>
+  </body>
+</html>

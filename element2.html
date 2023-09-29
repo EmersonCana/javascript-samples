@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="/" method="post" onsubmit="validate(event)">
+      <div class="form-group">
+        <input type="text" name="username" id="username" />
+      </div>
+      <div class="form-group">
+        <input type="password" name="password" id="password" />
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+
+    <script>
+      let userName = document.querySelector("#username");
+      let password = document.querySelector("#password");
+
+      function errorMessage(field, message) {
+        clearErrorMessage(field);
+        let span = document.createElement("span");
+        span.textContent = `${field.name} ${message}`;
+
+        field.parentElement.appendChild(span);
+      }
+
+      function clearErrorMessage(field) {
+        let count = field.parentElement.childElementCount;
+        console.log(count);
+        if (count > 1) {
+          field.parentElement.removeChild(field.parentElement.lastElementChild);
+        }
+      }
+
+      function validate(e) {
+        e.preventDefault();
+
+        if (userName.value.length <= 0) {
+          errorMessage(userName, "cannot be empty");
+        } else {
+          clearErrorMessage(userName);
+        }
+
+        if (password.value.length <= 0) {
+          errorMessage(password, "cannot be empty");
+        } else if (password.value.length < 8) {
+          errorMessage(password, "cannot be less than 8 characters.");
+        } else {
+          clearErrorMessage(password);
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="rock" value="1" onclick="move(event)">Rock</button>
+    <button id="paper" value="2" onclick="move(event)">Paper</button>
+    <button id="scissor" value="3" onclick="move(event)">Scissor</button>
+    <p id="number"></p>
+
+    <script>
+      let myMove = 0;
+      let botMove = 0;
+
+      function move(e) {
+        myMove = e.target.value;
+        document.querySelector("#number").innerHTML = myMove;
+      }
+    </script>
+  </body>
+</html>
